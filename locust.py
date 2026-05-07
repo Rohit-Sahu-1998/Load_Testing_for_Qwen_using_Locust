@@ -4,15 +4,15 @@ from locust import HttpUser, task, between, events
 
 
 PDF_PATHS = [
-    #"/home/rohit.sahu/Qwen_model/samples_nonstandard_data/Document_1.pdf",
-    #"/home/rohit.sahu/Qwen_model/samples_nonstandard_data/Document_5.pdf",
-    #"/home/rohit.sahu/Qwen_model/samples_nonstandard_data/Document_4.pdf"
-    # Add more PDFs here:
-    #"/home/rohit.sahu/Qwen_model/samples_nonstandard_data/Document_2.pdf",
-    #"/home/rohit.sahu/Qwen_model/samples_nonstandard_data/Document_3.pdf",
-    #"/home/rohit.sahu/Qwen_model/temp_upload_Document 7.pdf",
-    "/home/rohit.sahu/Qwen_model/cpt_codes/vllm_based_locust/output.pdf"
+    "/home/rohit.sahu/Qwen_model/samples_nonstandard_data/Document_1.pdf",
+    # "/home/rohit.sahu/Qwen_model/samples_nonstandard_data/Document_2.pdf",
+    # "/home/rohit.sahu/Qwen_model/samples_nonstandard_data/Document_3.pdf",
+    # "/home/rohit.sahu/Qwen_model/samples_nonstandard_data/sample.tif",
+    "/home/rohit.sahu/Qwen_model/cpt_codes/vllm_based_locust/Docs/Documents/260420GUAGUCA70116.TIF",
+    "/home/rohit.sahu/Qwen_model/cpt_codes/vllm_based_locust/Docs/Documents/260417GUAGUCA70627.TIF",
+    "/home/rohit.sahu/Qwen_model/cpt_codes/vllm_based_locust/Docs/Documents/260420GUAGUCA70120.TIF"
 ]
+
 
 @events.request.add_listener
 def request_listener(
@@ -46,7 +46,7 @@ class QwenApiUser(HttpUser):
                         "file": (
                             pdf_path.split("/")[-1],
                             f,
-                            "application/pdf",
+                            "application/octet-stream",
                         )
                     },
                     catch_response=True,
