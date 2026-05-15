@@ -1,0 +1,6 @@
+virtual_env=paddle_vllm
+  folder=vllm_based_locust
+  command to host vllm model= vllm serve /home/rohit.sahu/Qwen_model/cpt_codes/quantized_model/Quantized_model_qwen_4bit   --host 0.0.0.0   --port 8002   
+  --trust-remote-code    --max-model-len 8096   --limit-mm-per-prompt '{"image": 1}'   --gpu-memory-utilization 0.95
+  backend=uvicorn app:app --host 0.0.0.0 --port 8010
+  locus=locust -f locust_patient.py --host http://127.0.0.1:8010
